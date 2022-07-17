@@ -60,6 +60,9 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
+    implementation 'androidx.work:work-runtime:2.7.1'
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
+
     //Dependency injection - Koin AndroidX Scope features
     implementation "io.insert-koin:koin-android:$koin_version"
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
