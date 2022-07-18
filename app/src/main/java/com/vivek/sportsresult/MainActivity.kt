@@ -5,22 +5,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.vivek.sportsresult.connection.NetworkConnection
 import com.vivek.sportsresult.ui.theme.SportsResultTheme
 import com.vivek.sportsresult.ui.theme.getBackgroundColor
@@ -45,7 +48,7 @@ class MainActivity : ComponentActivity() {
         if (isConnected.value == true) {
             SetupView()
         } else {
-            println("No Connected with data >>>>>>>>>")
+            NoInternetView()
         }
     }
 
@@ -73,6 +76,24 @@ class MainActivity : ComponentActivity() {
             }
         })
     }
+
+    @Composable
+    fun NoInternetView() {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(getBackgroundColor()),
+            contentAlignment = Center,
+
+            ) {
+            val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.nointernet))
+            LottieAnimation(
+                composition,
+                iterations = LottieConstants.IterateForever
+            )
+        }
+    }
+
 
     @Preview("Light Theme")
     @Preview("Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
