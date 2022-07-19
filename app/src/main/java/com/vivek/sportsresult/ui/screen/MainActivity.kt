@@ -12,6 +12,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -26,6 +27,8 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.vivek.sportsresult.R
 import com.vivek.sportsresult.connection.NetworkConnection
+import com.vivek.sportsresult.core.logE
+import com.vivek.sportsresult.data.sportresult.ResultFetchState
 import com.vivek.sportsresult.ui.theme.SportsResultTheme
 import com.vivek.sportsresult.ui.theme.getBackgroundColor
 import com.vivek.sportsresult.viewmodel.MainActivityViewModel
@@ -57,7 +60,7 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun SetupView(viewModel :MainActivityViewModel = koinViewModel()) {
+    fun SetupView(viewModel: MainActivityViewModel = koinViewModel()) {
         Scaffold(topBar = {
             TopAppBar(
                 title = { Text(text = stringResource(id = R.string.app_name)) },
@@ -73,11 +76,28 @@ class MainActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    viewModel.getSportResult()
+                }) {
                     Text(text = stringResource(id = R.string.get_result))
                 }
             }
         })
+        when (val state = viewModel.stateResultFetchState.collectAsState().value) {
+            is ResultFetchState.OnSuccess -> {
+                logE("data >> ${state.sportResultResponse}")
+            }
+            is ResultFetchState.IsLoading -> {
+                if (state.isLoading) {
+                    logE("data loading >")
+                    ResultScreen()
+                }
+            }
+            is ResultFetchState.OnError -> {
+                logE("data >> ${state.response}")
+            }
+            is ResultFetchState.OnEmpty -> {}
+        }
     }
 
     @Composable
