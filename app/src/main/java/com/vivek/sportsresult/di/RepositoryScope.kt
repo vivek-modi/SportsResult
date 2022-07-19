@@ -16,6 +16,6 @@ object RepositoryScope {
     }
 }
 
-val repositoriesModule = module {
+val repositoryModule = module {
     factory { networkSessionScope.get<ResultRepository>() }
 }
