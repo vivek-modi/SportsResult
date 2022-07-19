@@ -1,6 +1,7 @@
 package com.vivek.sportsresult
 
 import android.app.Application
+import com.vivek.sportsresult.di.appModule
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
@@ -16,7 +17,7 @@ class ResultApplication : Application() {
         startKoin {
             androidLogger(Level.ERROR)
             modules(
-                listOf()
+                listOf(appModule)
             )
         }
     }

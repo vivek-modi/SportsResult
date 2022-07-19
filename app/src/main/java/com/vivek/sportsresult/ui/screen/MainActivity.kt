@@ -1,4 +1,4 @@
-package com.vivek.sportsresult
+package com.vivek.sportsresult.ui.screen
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -24,6 +24,7 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.vivek.sportsresult.R
 import com.vivek.sportsresult.connection.NetworkConnection
 import com.vivek.sportsresult.ui.theme.SportsResultTheme
 import com.vivek.sportsresult.ui.theme.getBackgroundColor
