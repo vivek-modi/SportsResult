@@ -77,7 +77,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
 
     implementation "com.airbnb.android:lottie-compose:$lottieVersion"
-    
+
     implementation "io.insert-koin:koin-android:$koin_version"
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
