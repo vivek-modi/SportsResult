@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.vivek.sportsresult.data.repository.ResultApi
 import com.vivek.sportsresult.data.repository.ResultRepository
+import com.vivek.sportsresult.network.HeadersInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
@@ -25,6 +26,7 @@ val networkModule = module {
 
         val builder = OkHttpClient().newBuilder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(HeadersInterceptor())
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(40, TimeUnit.SECONDS)
 
