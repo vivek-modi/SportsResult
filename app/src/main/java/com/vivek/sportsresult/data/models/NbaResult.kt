@@ -1,4 +1,4 @@
-package com.vivek.sportsresult.data.sportresult
+package com.vivek.sportsresult.data.models
 
 data class NbaResult(
     val gameNumber: Int? = null,

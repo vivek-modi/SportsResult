@@ -1,4 +1,4 @@
-package com.vivek.sportsresult.data.sportresult
+package com.vivek.sportsresult.data.models
 
 data class SportResultResponse(
     val f1Results: List<FOneResult>? = null,

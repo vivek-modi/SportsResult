@@ -1,6 +1,6 @@
 package com.vivek.sportsresult.data.repository
 
-import com.vivek.sportsresult.data.sportresult.SportResultResponse
+import com.vivek.sportsresult.data.models.SportResultResponse
 import retrofit2.Call
 import retrofit2.http.POST
 

@@ -3,7 +3,7 @@ package com.vivek.sportsresult.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vivek.sportsresult.data.repository.ResultRepository
-import com.vivek.sportsresult.data.sportresult.ResultFetchState
+import com.vivek.sportsresult.data.ResultFetchState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch

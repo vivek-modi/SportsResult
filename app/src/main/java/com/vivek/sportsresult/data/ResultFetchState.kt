@@ -1,4 +1,6 @@
-package com.vivek.sportsresult.data.sportresult
+package com.vivek.sportsresult.data
+
+import com.vivek.sportsresult.data.models.SportResultResponse
 
 sealed class ResultFetchState {
     data class OnSuccess(val sportResultResponse: SportResultResponse) : ResultFetchState()
