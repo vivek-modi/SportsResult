@@ -28,6 +28,8 @@ import com.vivek.sportsresult.R
 import com.vivek.sportsresult.connection.NetworkConnection
 import com.vivek.sportsresult.ui.theme.SportsResultTheme
 import com.vivek.sportsresult.ui.theme.getBackgroundColor
+import com.vivek.sportsresult.viewmodel.MainActivityViewModel
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -55,7 +57,7 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun SetupView() {
+    fun SetupView(viewModel :MainActivityViewModel = koinViewModel()) {
         Scaffold(topBar = {
             TopAppBar(
                 title = { Text(text = stringResource(id = R.string.app_name)) },
