@@ -2,8 +2,8 @@ package com.vivek.sportsresult.di
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.vivek.sportsresult.data.ResultApi
-import com.vivek.sportsresult.data.ResultRepository
+import com.vivek.sportsresult.data.repository.ResultApi
+import com.vivek.sportsresult.data.repository.ResultRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
