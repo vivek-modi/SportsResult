@@ -1,4 +1,4 @@
-package com.vivek.sportsresult.utils
+package com.vivek.sportsresult.core
 
 import android.util.Log
 import com.vivek.sportsresult.BuildConfig
