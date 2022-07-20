@@ -6,10 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.TopAppBar
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -78,7 +75,7 @@ fun NoInternetView() {
 @Composable
 fun SetupMainActivityView(
     viewModel: MainActivityViewModel = koinViewModel(),
-    navigateToNext: () -> Unit,
+    navigateToNext: (state: String) -> Unit,
 ) {
     Scaffold(topBar = {
         TopAppBar(
@@ -103,11 +100,27 @@ fun SetupMainActivityView(
         }
     })
     when (val state = viewModel.stateResultFetchState.collectAsState().value) {
-        is ResultFetchState.OnSuccess -> {}
+        is ResultFetchState.OnSuccess -> {
+            navigateToNext("loading $state")
+        }
         is ResultFetchState.IsLoading -> {
-            navigateToNext()
+            LoadingFunction()
         }
         is ResultFetchState.OnError -> {}
         is ResultFetchState.OnEmpty -> {}
+    }
+}
+
+
+@Composable
+fun LoadingFunction() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(getBackgroundColor()),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator()
     }
 }
