@@ -14,12 +14,12 @@ class MainActivityViewModel(private val resultRepository: ResultRepository) : Vi
 
     fun getSportResult() {
         viewModelScope.launch {
+            stateResultFetchState.value = ResultFetchState.IsLoading
             val result = resultRepository.getSportResult()
             delay(5000)
             result.handleResult(
                 onSuccess = { response ->
                     if (response != null) {
-                        stateResultFetchState.value = ResultFetchState.IsLoading(false)
                         stateResultFetchState.value = ResultFetchState.OnSuccess(response)
                     } else {
                         stateResultFetchState.value = ResultFetchState.OnEmpty

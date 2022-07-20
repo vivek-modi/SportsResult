@@ -28,7 +28,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.vivek.sportsresult.R
 import com.vivek.sportsresult.connection.NetworkConnection
 import com.vivek.sportsresult.core.logE
-import com.vivek.sportsresult.data.sportresult.ResultFetchState
+import com.vivek.sportsresult.data.ResultFetchState
 import com.vivek.sportsresult.ui.theme.SportsResultTheme
 import com.vivek.sportsresult.ui.theme.getBackgroundColor
 import com.vivek.sportsresult.viewmodel.MainActivityViewModel
@@ -88,10 +88,8 @@ class MainActivity : ComponentActivity() {
                 logE("data >> ${state.sportResultResponse}")
             }
             is ResultFetchState.IsLoading -> {
-                if (state.isLoading) {
-                    logE("data loading >")
-                    ResultScreen()
-                }
+                logE("data loading >")
+                ResultScreen()
             }
             is ResultFetchState.OnError -> {
                 logE("data >> ${state.response}")
