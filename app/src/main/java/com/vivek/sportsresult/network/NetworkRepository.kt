@@ -1,10 +1,9 @@
 package com.vivek.sportsresult.network
 
+import android.util.Log
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.vivek.sportsresult.core.logD
-import com.vivek.sportsresult.core.logE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
@@ -22,9 +21,9 @@ open class NetworkRepository {
 
         when (apiResponse) {
             is ApiResponse.Success ->
-                logD("ApiResponse success")
+                Log.d("SUCCESS TAG", "ApiResponse success")
             is ApiResponse.Error -> {
-                logD("Exception - ${apiResponse.exception}")
+                Log.d("ERROR TAG","Exception - ${apiResponse.exception}")
             }
         }
         return apiResponse
@@ -36,7 +35,7 @@ open class NetworkRepository {
             try {
                 response = call.execute()
             } catch (throwable: Throwable) {
-                logE("API call error", throwable)
+                Log.e("getApiResult tag", "API call error", throwable)
             }
 
             when (response?.isSuccessful) {
@@ -75,7 +74,7 @@ open class NetworkRepository {
         try {
             response = adapter.fromJson(responseJson)
         } catch (e: Throwable) {
-            logE("Failed to parse error response", e)
+            Log.e("parseErrorResponse tag", "Failed to parse error response", e)
         }
 
         return response
