@@ -5,4 +5,7 @@ data class FOneResult(
     val seconds: String? = null,
     val tournament: String? = null,
     val winner: String? = null
-)
+) {
+    val getFOneResultData: String
+        get() = "$winner wins $tournament by $seconds seconds"
+}

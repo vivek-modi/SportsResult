@@ -6,4 +6,7 @@ data class Tennis(
     val publicationDate: String? = null,
     val tournament: String? = null,
     val winner: String? = null
-)
+) {
+    val getTennisData: String
+        get() = "$tournament: $winner wins against $looser in $numberOfSets sets"
+}
