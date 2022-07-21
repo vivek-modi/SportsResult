@@ -1,4 +1,4 @@
-package com.vivek.sportsresult.utils
+package com.vivek.sportsresult.util
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
