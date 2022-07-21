@@ -12,7 +12,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -77,7 +76,7 @@ fun NoInternetView() {
 @Composable
 fun SetupMainActivityView(
     viewModel: MainActivityViewModel = koinViewModel(),
-    navigateToNext: (nearestResult: ArrayList<NearestResult>) -> Unit,
+    navigateToResultScreen: (nearestResult: ArrayList<NearestResult>) -> Unit,
 ) {
     Scaffold(topBar = {
         TopAppBar(
@@ -96,7 +95,7 @@ fun SetupMainActivityView(
             when (val state = viewModel.stateResultFetchState.collectAsState().value) {
                 is ResultFetchState.OnSuccess -> {
                     LaunchedEffect(Unit) {
-                        navigateToNext(state.nearestResult)
+                        navigateToResultScreen(state.nearestResult)
                     }
                 }
                 is ResultFetchState.IsLoading -> {
@@ -117,19 +116,5 @@ fun ActivityContent(viewModel: MainActivityViewModel) {
         viewModel.getSportResult()
     }) {
         Text(text = stringResource(id = R.string.get_result))
-    }
-}
-
-
-@Composable
-fun LoadingFunction() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(getBackgroundColor()),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CircularProgressIndicator()
     }
 }
