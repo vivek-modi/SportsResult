@@ -1,10 +1,23 @@
 package com.vivek.sportsresult.ui.screen
 
-import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import com.vivek.sportsresult.data.models.NearestResult
+import com.vivek.sportsresult.ui.theme.getBackgroundColor
 
 @Composable
-fun ResultScreen(state: ArrayList<NearestResult>?) {
-    Log.e("TAG", "ResultScreen: $state")
+fun ResultScreen(nearestResultList: List<NearestResult>?) {
+    LazyColumn(
+        Modifier
+            .fillMaxSize()
+            .background(getBackgroundColor())
+    ) {
+        items(nearestResultList) { nearestResult ->
+            Text(text = "$nearestResult")
+        }
+    }
 }
