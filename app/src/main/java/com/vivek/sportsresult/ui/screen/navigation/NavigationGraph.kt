@@ -30,7 +30,7 @@ internal fun NavigationGraph() {
                 navArgument(NEAREST_RESULT_JSON) { type = NearestResultParamType() }
             )
         ) { backStackEntry ->
-            ResultScreen(backStackEntry.arguments?.getParcelableArrayList(NEAREST_RESULT_JSON))
+            ResultScreen(navController, backStackEntry.arguments?.getParcelableArrayList(NEAREST_RESULT_JSON))
         }
     }
 }
