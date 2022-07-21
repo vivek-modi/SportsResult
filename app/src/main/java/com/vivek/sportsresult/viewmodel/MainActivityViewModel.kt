@@ -23,6 +23,7 @@ class MainActivityViewModel(private val resultRepository: ResultRepository) : Vi
 
     companion object {
         private const val DATE_PATTERN = "MMM d, yyyy h:mm:ss a"
+        private const val LOADING_DELAY = 2000L
     }
 
     val stateResultFetchState = MutableStateFlow<ResultFetchState>(ResultFetchState.OnEmpty)
@@ -34,7 +35,7 @@ class MainActivityViewModel(private val resultRepository: ResultRepository) : Vi
         viewModelScope.launch {
             stateResultFetchState.value = ResultFetchState.IsLoading
             val result = resultRepository.getSportResult()
-            delay(5000)
+            delay(LOADING_DELAY)
             result.handleResult(
                 onSuccess = { response ->
                     if (response != null) {
