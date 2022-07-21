@@ -1,7 +1,6 @@
 package com.vivek.sportsresult.ui.screen.navigation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.NavType
 import com.google.gson.Gson
 import com.vivek.sportsresult.data.models.NearestResult
@@ -12,7 +11,6 @@ class NearestResultParamType : NavType<ArrayList<NearestResult>>(isNullableAllow
     }
 
     override fun parseValue(value: String): ArrayList<NearestResult> {
-        Log.e("value", ">>$value")
         return Gson().fromJson<ArrayList<NearestResult>>(value, ArrayList::class.java)
     }
 
