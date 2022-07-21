@@ -19,7 +19,7 @@ internal fun NavigationGraph() {
         composable(ScreenRoute.Home.route) {
             SetupMainActivityView { nearestResult ->
                 val nearestResultJson = Uri.encode(Gson().toJson(nearestResult))
-                navController.navigate(ScreenRoute.Result.route + "/{$nearestResultJson}")
+                navController.navigate(ScreenRoute.Result.route + "/$nearestResultJson")
             }
         }
 
