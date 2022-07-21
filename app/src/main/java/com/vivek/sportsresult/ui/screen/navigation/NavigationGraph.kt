@@ -6,9 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.google.gson.Gson
 import com.vivek.sportsresult.ui.screen.ResultScreen
 import com.vivek.sportsresult.ui.screen.SetupMainActivityView
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 private const val NEAREST_RESULT_JSON = "nearestResultJson"
 
@@ -18,7 +19,7 @@ internal fun NavigationGraph() {
     NavHost(navController = navController, startDestination = ScreenRoute.Home.route) {
         composable(ScreenRoute.Home.route) {
             SetupMainActivityView { nearestResult ->
-                val nearestResultJson = Uri.encode(Gson().toJson(nearestResult))
+                val nearestResultJson = Uri.encode(Json.encodeToString(nearestResult))
                 navController.navigate(ScreenRoute.Result.route + "/$nearestResultJson")
             }
         }
