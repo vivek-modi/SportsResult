@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.time.temporal.Temporal
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 class MainActivityViewModel(private val resultRepository: ResultRepository) : ViewModel() {
@@ -38,7 +39,7 @@ class MainActivityViewModel(private val resultRepository: ResultRepository) : Vi
             result.handleResult(
                 onSuccess = { response ->
                     if (response != null) {
-                        stateResultFetchState.value = ResultFetchState.OnSuccess(getNearestDateFilter(response))
+                        stateResultFetchState.value = ResultFetchState.OnSuccess(ArrayList(getNearestDateFilter(response)))
                     } else {
                         stateResultFetchState.value = ResultFetchState.OnEmpty
                     }

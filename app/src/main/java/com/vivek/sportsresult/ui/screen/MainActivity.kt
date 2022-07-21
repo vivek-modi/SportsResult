@@ -24,6 +24,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.vivek.sportsresult.R
 import com.vivek.sportsresult.connection.NetworkConnection
 import com.vivek.sportsresult.data.ResultFetchState
+import com.vivek.sportsresult.data.models.NearestResult
 import com.vivek.sportsresult.ui.screen.navigation.NavigationGraph
 import com.vivek.sportsresult.ui.theme.SportsResultTheme
 import com.vivek.sportsresult.ui.theme.getBackgroundColor
@@ -76,7 +77,7 @@ fun NoInternetView() {
 @Composable
 fun SetupMainActivityView(
     viewModel: MainActivityViewModel = koinViewModel(),
-    navigateToNext: (state: String) -> Unit,
+    navigateToNext: (nearestResult: ArrayList<NearestResult>) -> Unit,
 ) {
     Scaffold(topBar = {
         TopAppBar(
@@ -95,7 +96,7 @@ fun SetupMainActivityView(
             when (val state = viewModel.stateResultFetchState.collectAsState().value) {
                 is ResultFetchState.OnSuccess -> {
                     LaunchedEffect(Unit) {
-                        navigateToNext("loading $state")
+                        navigateToNext(state.nearestResult)
                     }
                 }
                 is ResultFetchState.IsLoading -> {
