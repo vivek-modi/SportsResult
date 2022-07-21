@@ -7,5 +7,4 @@ import com.vivek.sportsresult.data.models.NearestResult
 @Composable
 fun ResultScreen(state: ArrayList<NearestResult>?) {
     Log.e("TAG", "ResultScreen: $state")
-
 }
