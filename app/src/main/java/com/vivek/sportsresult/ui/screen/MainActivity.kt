@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -84,30 +85,37 @@ fun SetupMainActivityView(
             elevation = 0.dp
         )
     }, content = { padding ->
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(getBackgroundColor())
-                .padding(padding),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(padding)
+                .background(getBackgroundColor()),
+            contentAlignment = Center
         ) {
-            Button(onClick = {
-                viewModel.getSportResult()
-            }) {
-                Text(text = stringResource(id = R.string.get_result))
+            when (val state = viewModel.stateResultFetchState.collectAsState().value) {
+                is ResultFetchState.OnSuccess -> {
+                    LaunchedEffect(Unit) {
+                        navigateToNext("loading $state")
+                    }
+                }
+                is ResultFetchState.IsLoading -> {
+                    LoadingFunction()
+                }
+                is ResultFetchState.OnError,
+                is ResultFetchState.OnEmpty -> {
+                    ActivityContent(viewModel)
+                }
             }
         }
     })
-    when (val state = viewModel.stateResultFetchState.collectAsState().value) {
-        is ResultFetchState.OnSuccess -> {
-            navigateToNext("loading $state")
-        }
-        is ResultFetchState.IsLoading -> {
-            LoadingFunction()
-        }
-        is ResultFetchState.OnError -> {}
-        is ResultFetchState.OnEmpty -> {}
+}
+
+@Composable
+fun ActivityContent(viewModel: MainActivityViewModel) {
+    Button(onClick = {
+        viewModel.getSportResult()
+    }) {
+        Text(text = stringResource(id = R.string.get_result))
     }
 }
 
