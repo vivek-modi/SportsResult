@@ -17,7 +17,6 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.time.temporal.Temporal
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 class MainActivityViewModel(private val resultRepository: ResultRepository) : ViewModel() {
@@ -39,7 +38,8 @@ class MainActivityViewModel(private val resultRepository: ResultRepository) : Vi
             result.handleResult(
                 onSuccess = { response ->
                     if (response != null) {
-                        stateResultFetchState.value = ResultFetchState.OnSuccess(ArrayList(getNearestDateFilter(response)))
+                        stateResultFetchState.value =
+                            ResultFetchState.OnSuccess(ArrayList(getNearestDateFilter(response)))
                     } else {
                         stateResultFetchState.value = ResultFetchState.OnEmpty
                     }
@@ -56,8 +56,7 @@ class MainActivityViewModel(private val resultRepository: ResultRepository) : Vi
         val fOneList = getFOneNearestResult(response)
         val nbaList = getNbaNearestResult(response)
         val tennisList = getTennisNearestResult(response)
-        val mergeList = concatenate(fOneList, nbaList, tennisList)
-        return mergeList.sortedBy { it.day }.reversed()
+        return (fOneList + nbaList + tennisList).sortedByDescending { it.day }
     }
 
     private fun getFOneNearestResult(response: SportResultResponse): List<NearestResult> {
@@ -119,11 +118,6 @@ class MainActivityViewModel(private val resultRepository: ResultRepository) : Vi
         }
         return results.filter { abs(ChronoUnit.DAYS.between(toDate, it.day)) == minimumDayCount }
     }
-
-    private fun <T> concatenate(vararg lists: List<T>): List<T> {
-        return listOf(*lists).flatten()
-    }
-
 }
 
 
