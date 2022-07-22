@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SportsResult</string>
+    <string name="app_name">Sports Result</string>
     <string name="get_result">Get Result</string>
     <string name="please_wait">Please wait</string>
     <string name="result_date">Result for %1$s</string>
