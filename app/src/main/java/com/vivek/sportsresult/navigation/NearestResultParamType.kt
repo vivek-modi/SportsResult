@@ -1,4 +1,4 @@
-package com.vivek.sportsresult.ui.screen.navigation
+package com.vivek.sportsresult.navigation
 
 import android.os.Bundle
 import androidx.navigation.NavType

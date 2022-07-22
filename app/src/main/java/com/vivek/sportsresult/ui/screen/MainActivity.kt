@@ -25,7 +25,7 @@ import com.vivek.sportsresult.R
 import com.vivek.sportsresult.connection.NetworkConnection
 import com.vivek.sportsresult.data.ResultFetchState
 import com.vivek.sportsresult.data.models.NearestResult
-import com.vivek.sportsresult.ui.screen.navigation.NavigationGraph
+import com.vivek.sportsresult.navigation.NavigationGraph
 import com.vivek.sportsresult.ui.theme.SportsResultTheme
 import com.vivek.sportsresult.ui.theme.getBackgroundColor
 import com.vivek.sportsresult.util.MainScaffold
